@@ -1,0 +1,15 @@
+version: '3'   #定义编排版本，共3版(1,2,3),1被淘汰,2的话只能单机编排，3的话即可以实现单机编排，也可以实现多机编排。
+services:     #定义服务
+  nginx1:      #定义nginx服务
+    hostname: nginx      #容器的主机名为nginx
+    build:               #定义创建容器的过程 //如果有线程的镜像，直接写images: 
+      context: ./nginx   #指定创建容器的目录位置(存储dockerfile的目录)
+      dockerfile: Dockerfile   #指定Dockerfile文件
+    ports:            #定义端口
+      - 1230:80       #暴露端口
+      - 4320:443      #暴露端口
+    networks:                      #指定网络
+      ydq:                         #指定网络名称
+        ipv4_address: 172.100.0.11  #指定ip地址
+    volumes:                                 #数据卷，挂载目录
+      - ./wwwroot:/usr/local/nginx/html      #前面宿主机，后面容器
