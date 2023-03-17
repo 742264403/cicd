@@ -12,4 +12,4 @@ services:     #定义服务
       ydq:                         #指定网络名称
         ipv4_address: 172.100.0.11  #指定ip地址
     volumes:                                 #数据卷，挂载目录
-      - ./nginx/html:/usr/local/nginx/html      #前面宿主机，后面容器
+      - ./nginx/index.html:/usr/local/nginx/html      #前面宿主机，后面容器
